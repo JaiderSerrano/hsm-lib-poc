@@ -86,3 +86,20 @@ func (h handler) PINBlockGeneration(w http.ResponseWriter, r *http.Request) erro
 
 	return web.EncodeJSON(w, resp, http.StatusOK)
 }
+
+func (h handler) PINVerification(w http.ResponseWriter, r *http.Request) error {
+	var pinVerParams hsm.PINVerificationParams
+	err := web.DecodeJSON(r, &pinVerParams)
+	if err != nil {
+		log.Error(r.Context(), "error decoding json PIN validation parameters", log.Err(err))
+		return web.NewError(http.StatusBadRequest, err.Error())
+	}
+
+	resp, err := h.service.PINValidation(r.Context(), pinVerParams)
+	if err != nil {
+		log.Error(r.Context(), "error generating PIN validation.", log.Err(err))
+		return web.NewError(http.StatusInternalServerError, err.Error())
+	}
+
+	return web.EncodeJSON(w, resp, http.StatusOK)
+}

@@ -23,3 +23,10 @@ type PINBlockGenerationParams struct {
 	PIN            string `json:"pin"`
 	PINBlockFormat string `json:"pbFormat"`
 }
+
+type PINVerificationParams struct {
+	PVV      string `json:"pvv"`
+	PAN      string `json:"pan"`
+	PVKI     string `json:"pvki"`
+	PINBlock string `json:"pinBlock"`
+}
