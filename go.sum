@@ -126,8 +126,8 @@ github.com/mercadolibre/fury_go-platform v1.7.1 h1:bWJX7lYfY6Dp5vPEQYe6d6ML/OPpQ
 github.com/mercadolibre/fury_go-platform v1.7.1/go.mod h1:GHz+/aAqY2NutX/fD4rj8CLe3SEs8K2E8BLWlekPdGY=
 github.com/mercadolibre/fury_go-toolkit-otel v0.3.1 h1:COBAjvVhoKnxrqh8X+pU6H9FrkCywSDuq2nLSEz3TyQ=
 github.com/mercadolibre/fury_go-toolkit-otel v0.3.1/go.mod h1:7VIIiPMeop/ECwEZSHTWm2d2AiTboPrG6uexhqB58Kw=
-github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024181409-a3cd9db58ede h1:FpIInlhadeXuDuqXS2is14JeTcMIysTVgwEYDXWhCLE=
-github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024181409-a3cd9db58ede/go.mod h1:ojM24/6o0hFqp2c73qkrHK/RWSrz/qCox4+5DzHEtTg=
+github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024215944-fba6a078d938 h1:jqhz2B4lT+1lSDDUu2a+Ac7o+67f2MKvcod+kyOJX6c=
+github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024215944-fba6a078d938/go.mod h1:ojM24/6o0hFqp2c73qkrHK/RWSrz/qCox4+5DzHEtTg=
 github.com/newrelic/go-agent/v3 v3.17.0 h1:FLhxjckKKoJWB2rR14oNm+mYZLpktfEy+JKRSF5WgXw=
 github.com/newrelic/go-agent/v3 v3.17.0/go.mod h1:BFJOlbZWRlPTXKYIC1TTTtQKTnYntEJaU0VU507hDc0=
 github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e/go.mod h1:pJLUxLENpZxwdsKMEsNbx1VGcRFpLqf3715MtcvvzbA=

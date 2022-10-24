@@ -80,5 +80,6 @@ func createHsmClient(ctx context.Context) (hsmLib.Client, error) {
 	lvl := zap.NewAtomicLevelAt(log.DebugLevel)
 	logger := log.NewProductionLogger(&lvl)
 	ctx = log.Context(ctx, logger)
-	return hsmLib.New(ctx, env, "my_bari-hsm-lib-app")
+
+	return hsmLib.New(ctx, env, appName)
 }

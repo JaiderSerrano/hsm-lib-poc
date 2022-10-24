@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/mercadolibre/fury_go-core v1.5.3
 	github.com/mercadolibre/fury_go-platform v1.7.1
-	github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024181409-a3cd9db58ede
+	github.com/mercadolibre/fury_hsm-lib/v3 v3.1.1-0.20221024215944-fba6a078d938
 	go.uber.org/zap v1.21.0
 )
 
