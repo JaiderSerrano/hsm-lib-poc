@@ -37,5 +37,5 @@ func (h handler) ARQCValidation(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	res := response{Message: strconv.FormatBool(resp)}
-	return web.EncodeJSON(w, res, http.StatusCreated)
+	return web.EncodeJSON(w, res, http.StatusOK)
 }
