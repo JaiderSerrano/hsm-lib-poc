@@ -27,7 +27,9 @@ func run() error {
 	hsmHandler := handler.NewHSMHandler(hsmService)
 
 	// HSM functionalities
-	app.Post("/hsm", hsmHandler.ARQCValidation)
+	app.Post("/hsm/arqc-validation", hsmHandler.ARQCValidation)
+	app.Post("/hsm/pin-generation", hsmHandler.PINGeneration)
+	app.Post("/hsm/pvv-generation", hsmHandler.PVVGeneration)
 
 	return app.Run()
 }
