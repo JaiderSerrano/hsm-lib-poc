@@ -18,3 +18,8 @@ type PVVGenerationParams struct {
 	PAN  string `json:"pan"`
 	PVKI string `json:"pvki"`
 }
+
+type PINBlockGenerationParams struct {
+	PIN            string `json:"pin"`
+	PINBlockFormat string `json:"pbFormat"`
+}

@@ -30,6 +30,7 @@ func run() error {
 	app.Post("/hsm/arqc-validation", hsmHandler.ARQCValidation)
 	app.Post("/hsm/pin-generation", hsmHandler.PINGeneration)
 	app.Post("/hsm/pvv-generation", hsmHandler.PVVGeneration)
+	app.Post("/hsm/pin-block-generation", hsmHandler.PINBlockGeneration)
 
 	return app.Run()
 }

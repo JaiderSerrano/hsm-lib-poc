@@ -1,8 +1,8 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/mercadolibre/fury_go-core/pkg/log"
 	"github.com/mercadolibre/fury_go-core/pkg/web"
@@ -17,10 +17,6 @@ func NewHSMHandler(service hsm.Service) *handler {
 	return &handler{service}
 }
 
-type response struct {
-	Message string `json:"message"`
-}
-
 func (h handler) ARQCValidation(w http.ResponseWriter, r *http.Request) error {
 	var arqcParams hsm.ARQCParams
 	err := web.DecodeJSON(r, &arqcParams)
@@ -32,12 +28,12 @@ func (h handler) ARQCValidation(w http.ResponseWriter, r *http.Request) error {
 
 	resp, err := h.service.ARQCValidation(r.Context(), arqcParams)
 	if err != nil {
+		fmt.Println(err.Error())
 		log.Error(r.Context(), "error validating ARQC.", log.Err(err))
 		return web.NewError(http.StatusInternalServerError, err.Error())
 	}
 
-	res := response{Message: strconv.FormatBool(resp)}
-	return web.EncodeJSON(w, res, http.StatusOK)
+	return web.EncodeJSON(w, resp, http.StatusOK)
 }
 
 func (h handler) PINGeneration(w http.ResponseWriter, r *http.Request) error {
@@ -50,7 +46,7 @@ func (h handler) PINGeneration(w http.ResponseWriter, r *http.Request) error {
 
 	resp, err := h.service.PINGeneration(r.Context(), pinGenParams)
 	if err != nil {
-		log.Error(r.Context(), "error generating PIN.", log.Err(err))
+		log.Error(r.Context(), "error generating PIN and PVV.", log.Err(err))
 		return web.NewError(http.StatusInternalServerError, err.Error())
 	}
 
@@ -67,7 +63,24 @@ func (h handler) PVVGeneration(w http.ResponseWriter, r *http.Request) error {
 
 	resp, err := h.service.PVVGeneration(r.Context(), pvvGenParams)
 	if err != nil {
-		log.Error(r.Context(), "error generating PIN.", log.Err(err))
+		log.Error(r.Context(), "error generating PVV.", log.Err(err))
+		return web.NewError(http.StatusInternalServerError, err.Error())
+	}
+
+	return web.EncodeJSON(w, resp, http.StatusOK)
+}
+
+func (h handler) PINBlockGeneration(w http.ResponseWriter, r *http.Request) error {
+	var pbGenParams hsm.PINBlockGenerationParams
+	err := web.DecodeJSON(r, &pbGenParams)
+	if err != nil {
+		log.Error(r.Context(), "error decoding json PIN block generation parameters", log.Err(err))
+		return web.NewError(http.StatusBadRequest, err.Error())
+	}
+
+	resp, err := h.service.PINBlockGeneration(r.Context(), pbGenParams)
+	if err != nil {
+		log.Error(r.Context(), "error generating PIN block.", log.Err(err))
 		return web.NewError(http.StatusInternalServerError, err.Error())
 	}
 

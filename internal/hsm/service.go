@@ -24,6 +24,8 @@ type Service interface {
 	PINGeneration(ctx context.Context, pinGenerationParams PINGenerationParams) (map[string]string, error)
 	// PVVGeneration generate a new PVV given a PIN.
 	PVVGeneration(ctx context.Context, pinGenerationParams PVVGenerationParams) (map[string]string, error)
+	// PINBlockGeneration generate a PIN block given a PIN and PIN Block format.
+	PINBlockGeneration(ctx context.Context, pinGenerationParams PINBlockGenerationParams) (string, error)
 }
 
 func (s *service) ARQCValidation(ctx context.Context, params ARQCParams) (bool, error) {
@@ -51,6 +53,15 @@ func (s *service) PVVGeneration(ctx context.Context, params PVVGenerationParams)
 	}
 
 	return hsmClient.GeneratePVV(ctx, pek, pvkLeft, pvkRight, params.PIN, params.PAN, params.PVKI, timeout)
+}
+
+func (s *service) PINBlockGeneration(ctx context.Context, params PINBlockGenerationParams) (string, error) {
+	hsmClient, err := createHsmClient(ctx)
+	if err != nil {
+		return "", err
+	}
+
+	return hsmClient.GeneratePINBlock(ctx, pek, params.PIN, params.PINBlockFormat, timeout)
 }
 
 func createHsmClient(ctx context.Context) (hsmLib.Client, error) {
