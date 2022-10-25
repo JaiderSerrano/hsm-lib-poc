@@ -28,6 +28,12 @@ type Service interface {
 	PINBlockGeneration(ctx context.Context, pinGenerationParams PINBlockGenerationParams) (string, error)
 	// PINValidation validate PIN given PAN, PVV, PVKI and PIN block.
 	PINValidation(ctx context.Context, pinValidationParams PINVerificationParams) (string, error)
+	//ARPCGeneration
+	ARPCGeneration(ctx context.Context, arpcParams ARPCParams) (string, error)
+	//GenerateVerificationData
+	GenerateVerificationData(ctx context.Context, verificationData VerificationData) (string, error)
+	//ValidateVerificationData
+	ValidateVerificationData(ctx context.Context, verificationData VerificationData) (bool, error)
 }
 
 func (s *service) ARQCValidation(ctx context.Context, params ARQCParams) (bool, error) {
@@ -73,6 +79,33 @@ func (s *service) PINValidation(ctx context.Context, params PINVerificationParam
 	}
 
 	return hsmClient.PINValidation(ctx, params.PAN, params.PINBlock, pekID, pvk, params.PVKI, params.PVV, timeout)
+}
+
+func (s *service) ARPCGeneration(ctx context.Context, params ARPCParams) (string, error) {
+	hsmClient, err := createHsmClient(ctx)
+	if err != nil {
+		return "", err
+	}
+
+	return hsmClient.ARPCGeneration(ctx, imk, params.PAN, params.PSN, params.ATC, params.ARQCMessage, params.ARQC, params.CSU, timeout)
+}
+
+func (s *service) GenerateVerificationData(ctx context.Context, verificationData VerificationData) (string, error) {
+	hsmClient, err := createHsmClient(ctx)
+	if err != nil {
+		return "", err
+	}
+
+	return hsmClient.GenerateVerificationData(ctx, verificationData.PAN, verificationData.ExpDate, verificationData.ServiceCode, cvka, cvkb, timeout)
+}
+
+func (s *service) ValidateVerificationData(ctx context.Context, verificationData VerificationData) (bool, error) {
+	hsmClient, err := createHsmClient(ctx)
+	if err != nil {
+		return false, err
+	}
+
+	return hsmClient.ValidateVerificationData(ctx, verificationData.PAN, verificationData.ExpDate, verificationData.ServiceCode, verificationData.VerificationData, cvka, cvkb, timeout)
 }
 
 func createHsmClient(ctx context.Context) (hsmLib.Client, error) {

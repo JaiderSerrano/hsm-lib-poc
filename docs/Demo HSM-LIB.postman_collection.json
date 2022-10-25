@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "c9332eb7-d267-4ce9-af03-62010282af64",
+		"name": "Demo HSM-LIB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ARQC Validation Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pan\":\"4400972076537898\",\n    \"seqNumber\":\"00\",\n    \"atc\":\"0005\",\n    \"arqcMessage\":\"000000000100000000000000048400800080000484211022005DF076F638000005A00001220000\",\n    \"arqc\":\"89196F4D0A893EA5\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/arqc-validation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"arqc-validation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PIN Generation Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pan\":\"4400972076537898\",\n    \"pvki\":\"5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/pin-generation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"pin-generation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PVV Generation Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pin\":\"6454\",\n    \"pan\":\"4400972076537898\",\n    \"pvki\":\"5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/pvv-generation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"pvv-generation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PIN Block Generation Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pin\":\"2700\",\n    \"pbFormat\":\"05\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/pin-block-generation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"pin-block-generation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PIN Verification Service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pvki\": \"5\",\n    \"pin\": \"2700\",\n    \"pvv\": \"8797\",\n    \"pan\":\"4400972076537898\",\n    \"pinBlock\":\"C23F13898055CA87\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/pin-verification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"pin-verification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate ARPC",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pan\": \"4400972076537898\",\n    \"seqNumber\": \"00\",\n    \"atc\": \"0005\",\n    \"arqcMessage\": \"000000000100000000000000048400800080000484211022005DF076F638000005A00001220000\",\n    \"arqc\": \"89196F4D0A893EA5\",\n    \"cardStatusUpdate\": \"83800000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/arpc-generation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"arpc-generation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Verification Data (CVV, CVV2, ICVV, CVC, CVC2)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pan\" : \"4534099876286457\",\n    \"expDate\" : \"2305\",\n    \"serviceCode\" : \"206\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/generate-vd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"generate-vd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Verification Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pan\" : \"4534099876286457\",\n    \"expDate\" : \"2305\",\n    \"serviceCode\" : \"206\",\n    \"verificationData\" : \"066\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/hsm/validate-vv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hsm",
+						"validate-vv"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

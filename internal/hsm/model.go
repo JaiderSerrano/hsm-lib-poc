@@ -30,3 +30,19 @@ type PINVerificationParams struct {
 	PVKI     string `json:"pvki"`
 	PINBlock string `json:"pinBlock"`
 }
+
+type ARPCParams struct {
+	PAN         string `json:"pan"`
+	PSN         string `json:"seqNumber"`
+	ATC         string `json:"atc"`
+	ARQCMessage string `json:"arqcMessage"`
+	ARQC        string `json:"arqc"`
+	CSU         string `json:"cardStatusUpdate"`
+}
+
+type VerificationData struct {
+	PAN              string `json:"pan"`
+	ExpDate          string `json:"expDate"`
+	ServiceCode      string `json:"serviceCode"`
+	VerificationData string `json:"verificationData"`
+}

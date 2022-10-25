@@ -12,4 +12,6 @@ const (
 	pvkLeft  = "2315208C9110AD40"
 	pvkRight = "15EA4CA20131C2FD"
 	pvk      = pvkLeft + pvkRight
+	cvka     = "E055C1E301E79EEF"
+	cvkb     = "A8855D11EE9DD3CE"
 )

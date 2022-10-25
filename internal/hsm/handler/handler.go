@@ -103,3 +103,56 @@ func (h handler) PINVerification(w http.ResponseWriter, r *http.Request) error {
 
 	return web.EncodeJSON(w, resp, http.StatusOK)
 }
+
+func (h handler) ARPCGeneration(w http.ResponseWriter, r *http.Request) error {
+	var arpcParams hsm.ARPCParams
+	err := web.DecodeJSON(r, &arpcParams)
+	if err != nil {
+		log.Error(r.Context(), "error decoding json ARPC parameters", log.Err(err))
+		return web.NewError(http.StatusBadRequest, err.Error())
+	}
+
+	arpc, err := h.service.ARPCGeneration(r.Context(), arpcParams)
+	if err != nil {
+		log.Error(r.Context(), "error generating ARPC Ccryptogram", log.Err(err))
+		return web.NewError(http.StatusInternalServerError, err.Error())
+	}
+
+	return web.EncodeJSON(w, arpc, http.StatusOK)
+}
+
+func (h handler) GenerateValidationData(w http.ResponseWriter, r *http.Request) error {
+	var verificationData hsm.VerificationData
+
+	err := web.DecodeJSON(r, &verificationData)
+	if err != nil {
+		log.Error(r.Context(), "error decoding json verification data parameters", log.Err(err))
+		return web.NewError(http.StatusBadRequest, err.Error())
+	}
+
+	vd, err := h.service.GenerateVerificationData(r.Context(), verificationData)
+	if err != nil {
+		log.Error(r.Context(), "error generating verification data", log.Err(err))
+		return web.NewError(http.StatusInternalServerError, err.Error())
+	}
+
+	return web.EncodeJSON(w, vd, http.StatusOK)
+}
+
+func (h handler) ValidateValidationData(w http.ResponseWriter, r *http.Request) error {
+	var verificationData hsm.VerificationData
+
+	err := web.DecodeJSON(r, &verificationData)
+	if err != nil {
+		log.Error(r.Context(), "error decoding json verification data parameters", log.Err(err))
+		return web.NewError(http.StatusBadRequest, err.Error())
+	}
+
+	vd, err := h.service.ValidateVerificationData(r.Context(), verificationData)
+	if err != nil {
+		log.Error(r.Context(), "error validating verification data", log.Err(err))
+		return web.NewError(http.StatusInternalServerError, err.Error())
+	}
+
+	return web.EncodeJSON(w, vd, http.StatusOK)
+}

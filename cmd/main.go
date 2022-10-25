@@ -32,6 +32,8 @@ func run() error {
 	app.Post("/hsm/pvv-generation", hsmHandler.PVVGeneration)
 	app.Post("/hsm/pin-block-generation", hsmHandler.PINBlockGeneration)
 	app.Post("/hsm/pin-verification", hsmHandler.PINVerification)
-
+	app.Post("/hsm/arpc-generation", hsmHandler.ARPCGeneration)
+	app.Post("/hsm/generate-vd", hsmHandler.GenerateValidationData)
+	app.Post("/hsm/validate-vv", hsmHandler.ValidateValidationData)
 	return app.Run()
 }
